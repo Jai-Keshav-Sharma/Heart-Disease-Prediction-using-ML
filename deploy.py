@@ -76,24 +76,27 @@ if selected == 'Heart Disease Prediction':
     # Creating a button for Prediction
     if st.button('Heart Disease Test Result'):
         try:
-            # Convert inputs to numeric values, ensuring they're not empty
-            input_data = [[
-                int(age), int(sex) if sex else None, int(cp) if cp else None, 
-                int(trestbps), int(chol), int(fbs) if fbs else None,
-                int(restecg) if restecg else None, int(thalach), 
-                int(exang) if exang else None, float(oldpeak),
-                int(slope) if slope else None, int(ca) if ca else None, 
-                int(thal) if thal else None
-            ]]
-            
-            # Make prediction
-            heart_prediction = heart_disease_model.predict(input_data)
-            
-            # Display result
-            if heart_prediction[0] == 1:
-                heart_diagnosis = 'The person is having heart disease'
+            # Validate that all inputs are filled
+            if age and sex and cp and trestbps and chol and fbs and restecg and thalach and exang and oldpeak and slope and ca and thal:
+                # Convert inputs to the appropriate types
+                input_data = [[
+                    int(age), int(sex), int(cp), 
+                    int(trestbps), int(chol), int(fbs),
+                    int(restecg), int(thalach), 
+                    int(exang), float(oldpeak),
+                    int(slope), int(ca), int(thal)
+                ]]
+                
+                # Make prediction
+                heart_prediction = heart_disease_model.predict(input_data)
+                
+                # Display result
+                if heart_prediction[0] == 1:
+                    heart_diagnosis = 'The person is having heart disease'
+                else:
+                    heart_diagnosis = 'The person does not have heart disease'
             else:
-                heart_diagnosis = 'The person does not have heart disease'
+                st.error("Please fill all fields correctly before submitting.")
                 
         except ValueError:
             st.error("Please enter valid numeric values.")
