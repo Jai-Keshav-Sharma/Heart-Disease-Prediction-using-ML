@@ -9,6 +9,9 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
+# Set the page to wide mode
+st.set_page_config(layout="wide")
+
 # Loading the saved models
 heart_disease_model = pickle.load(open('heart_disease_prediction_logisticRegression.sav', 'rb'))
 
