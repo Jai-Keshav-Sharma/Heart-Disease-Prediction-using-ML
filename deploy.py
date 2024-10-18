@@ -29,7 +29,7 @@ if selected == 'Heart Disease Prediction':
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        age = st.number_input('Age', min_value=1, max_value=120, step=1)
+        age = st.text_input('Age')
         
     with col2:
         sex = st.selectbox('Sex (1 = Male, 0 = Female)', options=[1, 0])
@@ -38,10 +38,10 @@ if selected == 'Heart Disease Prediction':
         cp = st.selectbox('Chest Pain Types (0-3)', options=[0, 1, 2, 3])
         
     with col1:
-        trestbps = st.number_input('Resting Blood Pressure (in mm Hg)', step=1)
+        trestbps = st.text_input('Resting Blood Pressure (in mm Hg)')
         
     with col2:
-        chol = st.number_input('Serum Cholesterol in mg/dl', step=1)
+        chol = st.text_input('Serum Cholesterol in mg/dl')
         
     with col3:
         fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False)', options=[1, 0])
@@ -50,13 +50,13 @@ if selected == 'Heart Disease Prediction':
         restecg = st.selectbox('Resting Electrocardiographic Results (0-2)', options=[0, 1, 2])
         
     with col2:
-        thalach = st.number_input('Maximum Heart Rate Achieved', step=1)
+        thalach = st.text_input('Maximum Heart Rate Achieved')
         
     with col3:
         exang = st.selectbox('Exercise Induced Angina (1 = Yes, 0 = No)', options=[1, 0])
         
     with col1:
-        oldpeak = st.number_input('ST Depression Induced by Exercise', format="%.2f")
+        oldpeak = st.text_input('ST Depression Induced by Exercise')
         
     with col2:
         slope = st.selectbox('Slope of the Peak Exercise ST Segment (0-2)', options=[0, 1, 2])
@@ -73,8 +73,12 @@ if selected == 'Heart Disease Prediction':
     # Creating a button for Prediction
     if st.button('Heart Disease Test Result'):
         try:
-            # Convert inputs to a list of numeric values
-            input_data = [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]]
+            # Convert inputs to numeric values
+            input_data = [[
+                int(age), int(sex), int(cp), int(trestbps), int(chol), int(fbs),
+                int(restecg), int(thalach), int(exang), float(oldpeak),
+                int(slope), int(ca), int(thal)
+            ]]
             
             # Make prediction
             heart_prediction = heart_disease_model.predict(input_data)
