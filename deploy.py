@@ -35,10 +35,10 @@ if selected == 'Heart Disease Prediction':
         age = st.text_input('Age')
         
     with col2:
-        sex = st.selectbox('Sex (1 = Male, 0 = Female)', options=["", 1, 0])
+        sex = st.selectbox('Sex (1 = Male, 0 = Female)', options=[1, 0])  # Removed the empty option
         
     with col3:
-        cp = st.selectbox('Chest Pain Types (0-3)', options=["", 0, 1, 2, 3])
+        cp = st.selectbox('Chest Pain Types (0-3)', options=[0, 1, 2, 3])  # Removed the empty option
         
     with col1:
         trestbps = st.text_input('Resting Blood Pressure (in mm Hg)')
@@ -47,28 +47,28 @@ if selected == 'Heart Disease Prediction':
         chol = st.text_input('Serum Cholesterol in mg/dl')
         
     with col3:
-        fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False)', options=["", 1, 0])
+        fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False)', options=[1, 0])  # Removed the empty option
         
     with col1:
-        restecg = st.selectbox('Resting Electrocardiographic Results (0-2)', options=["", 0, 1, 2])
+        restecg = st.selectbox('Resting Electrocardiographic Results (0-2)', options=[0, 1, 2])  # Removed the empty option
         
     with col2:
         thalach = st.text_input('Maximum Heart Rate Achieved')
         
     with col3:
-        exang = st.selectbox('Exercise Induced Angina (1 = Yes, 0 = No)', options=["", 1, 0])
+        exang = st.selectbox('Exercise Induced Angina (1 = Yes, 0 = No)', options=[1, 0])  # Removed the empty option
         
     with col1:
         oldpeak = st.text_input('ST Depression Induced by Exercise')
         
     with col2:
-        slope = st.selectbox('Slope of the Peak Exercise ST Segment (0-2)', options=["", 0, 1, 2])
+        slope = st.selectbox('Slope of the Peak Exercise ST Segment (0-2)', options=[0, 1, 2])  # Removed the empty option
         
     with col3:
-        ca = st.selectbox('Major Vessels Colored by Fluoroscopy (0-3)', options=["", 0, 1, 2, 3])
+        ca = st.selectbox('Major Vessels Colored by Fluoroscopy (0-3)', options=[0, 1, 2, 3])  # Removed the empty option
         
     with col1:
-        thal = st.selectbox('Thal (1 = Fixed Defect, 2 = Normal, 3 = Reversible Defect)', options=["", 1, 2, 3])
+        thal = st.selectbox('Thal (1 = Fixed Defect, 2 = Normal, 3 = Reversible Defect)', options=[1, 2, 3])  # Removed the empty option
         
     # Code for Prediction
     heart_diagnosis = ''
@@ -78,12 +78,12 @@ if selected == 'Heart Disease Prediction':
         try:
             # Convert inputs to numeric values, ensuring they're not empty
             input_data = [[
-                int(age), int(sex) if sex else None, int(cp) if cp else None, 
-                int(trestbps), int(chol), int(fbs) if fbs else None,
-                int(restecg) if restecg else None, int(thalach), 
-                int(exang) if exang else None, float(oldpeak),
-                int(slope) if slope else None, int(ca) if ca else None, 
-                int(thal) if thal else None
+                int(age), int(sex), int(cp), 
+                int(trestbps), int(chol), 
+                int(fbs), int(restecg), int(thalach), 
+                int(exang), float(oldpeak), 
+                int(slope), int(ca), 
+                int(thal)
             ]]
             
             # Make prediction
