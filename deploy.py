@@ -32,7 +32,7 @@ if selected == 'Heart Disease Prediction':
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        age = st.text_input('Age', '')
+        age = st.text_input('Age')
         
     with col2:
         sex = st.selectbox('Sex (1 = Male, 0 = Female)', options=[1, 0])
@@ -41,10 +41,10 @@ if selected == 'Heart Disease Prediction':
         cp = st.selectbox('Chest Pain Types (0-3)', options=[0, 1, 2, 3])
         
     with col1:
-        trestbps = st.text_input('Resting Blood Pressure (in mm Hg)', '')
+        trestbps = st.text_input('Resting Blood Pressure (in mm Hg)')
         
     with col2:
-        chol = st.text_input('Serum Cholesterol in mg/dl', '')
+        chol = st.text_input('Serum Cholesterol in mg/dl')
         
     with col3:
         fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False)', options=[1, 0])
@@ -53,13 +53,13 @@ if selected == 'Heart Disease Prediction':
         restecg = st.selectbox('Resting Electrocardiographic Results (0-2)', options=[0, 1, 2])
         
     with col2:
-        thalach = st.text_input('Maximum Heart Rate Achieved', '')
+        thalach = st.text_input('Maximum Heart Rate Achieved')
         
     with col3:
         exang = st.selectbox('Exercise Induced Angina (1 = Yes, 0 = No)', options=[1, 0])
         
     with col1:
-        oldpeak = st.text_input('ST Depression Induced by Exercise', '')
+        oldpeak = st.text_input('ST Depression Induced by Exercise')
         
     with col2:
         slope = st.selectbox('Slope of the Peak Exercise ST Segment (0-2)', options=[0, 1, 2])
