@@ -1,4 +1,4 @@
-ct# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Created on Friday October 18 08:04:15 2024
 
@@ -35,10 +35,10 @@ if selected == 'Heart Disease Prediction':
         age = st.text_input('Age')
         
     with col2:
-        sex = st.selectbox('Sex (1 = Male, 0 = Female)', options=["Select", 1, 0])
+        sex = st.selectbox('Sex (1 = Male, 0 = Female)', options=["", 1, 0])
         
     with col3:
-        cp = st.selectbox('Chest Pain Types (0-3)', options=["Select", 0, 1, 2, 3])
+        cp = st.selectbox('Chest Pain Types (0-3)', options=["", 0, 1, 2, 3])
         
     with col1:
         trestbps = st.text_input('Resting Blood Pressure (in mm Hg)')
@@ -47,28 +47,28 @@ if selected == 'Heart Disease Prediction':
         chol = st.text_input('Serum Cholesterol in mg/dl')
         
     with col3:
-        fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False)', options=["Select", 1, 0])
+        fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False)', options=["", 1, 0])
         
     with col1:
-        restecg = st.selectbox('Resting Electrocardiographic Results (0-2)', options=["Select", 0, 1, 2])
+        restecg = st.selectbox('Resting Electrocardiographic Results (0-2)', options=["", 0, 1, 2])
         
     with col2:
         thalach = st.text_input('Maximum Heart Rate Achieved')
         
     with col3:
-        exang = st.selectbox('Exercise Induced Angina (1 = Yes, 0 = No)', options=["Select", 1, 0])
+        exang = st.selectbox('Exercise Induced Angina (1 = Yes, 0 = No)', options=["", 1, 0])
         
     with col1:
         oldpeak = st.text_input('ST Depression Induced by Exercise')
         
     with col2:
-        slope = st.selectbox('Slope of the Peak Exercise ST Segment (0-2)', options=["Select", 0, 1, 2])
+        slope = st.selectbox('Slope of the Peak Exercise ST Segment (0-2)', options=["", 0, 1, 2])
         
     with col3:
-        ca = st.selectbox('Major Vessels Colored by Fluoroscopy (0-3)', options=["Select", 0, 1, 2, 3])
+        ca = st.selectbox('Major Vessels Colored by Fluoroscopy (0-3)', options=["", 0, 1, 2, 3])
         
     with col1:
-        thal = st.selectbox('Thal (1 = Fixed Defect, 2 = Normal, 3 = Reversible Defect)', options=["Select", 1, 2, 3])
+        thal = st.selectbox('Thal (1 = Fixed Defect, 2 = Normal, 3 = Reversible Defect)', options=["", 1, 2, 3])
         
     # Code for Prediction
     heart_diagnosis = ''
