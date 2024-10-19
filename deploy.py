@@ -95,7 +95,7 @@ if (selected == 'Heart Disease Prediction'):
             else:
                 heart_diagnosis = 'The person does not have any heart disease'
 
-        except ValueError:
-            st.error("Please ensure all inputs are valid numeric values.")
+        # except ValueError:
+        #     st.error("Please ensure all inputs are valid numeric values.")
 
     st.success(heart_diagnosis)
