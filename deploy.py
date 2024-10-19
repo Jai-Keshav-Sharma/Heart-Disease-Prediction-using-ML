@@ -20,7 +20,7 @@ with st.sidebar:
                           default_index=0)
 
 # Heart Disease Prediction Page
-if (selected == 'Heart Disease Prediction'):
+if selected == 'Heart Disease Prediction':
     # page title
     st.title('Heart Disease Prediction using ML')
 
@@ -71,31 +71,35 @@ if (selected == 'Heart Disease Prediction'):
     # creating a button for Prediction
     if st.button('Heart Disease Test Result'):
         try:
-            # Convert inputs to appropriate types
+            # Convert inputs to appropriate types and check for emptiness
             inputs = [
-                float(age),
-                int(sex),
-                int(cp),
-                float(trestbps),
-                float(chol),
-                int(fbs),
-                int(restecg),
-                float(thalach),
-                int(exang),
-                float(oldpeak),
-                int(slope),
-                int(ca),
-                int(thal)
+                float(age) if age else None,
+                int(sex) if sex else None,
+                int(cp) if cp else None,
+                float(trestbps) if trestbps else None,
+                float(chol) if chol else None,
+                int(fbs) if fbs else None,
+                float(restecg) if restecg else None,  # Allow float for restecg
+                float(thalach) if thalach else None,
+                int(exang) if exang else None,
+                float(oldpeak) if oldpeak else None,  # Allow float for oldpeak
+                int(slope) if slope else None,
+                int(ca) if ca else None,
+                int(thal) if thal else None
             ]
 
-            heart_prediction = heart_disease_model.predict([inputs])
-
-            if (heart_prediction[0] == 1):
-                heart_diagnosis = 'The person is having heart disease'
+            # Check if any input is None
+            if None in inputs:
+                st.error("Please fill in all fields with valid numeric values.")
             else:
-                heart_diagnosis = 'The person does not have any heart disease'
+                heart_prediction = heart_disease_model.predict([inputs])
 
-        # except ValueError:
-        #     st.error("Please ensure all inputs are valid numeric values.")
+                if heart_prediction[0] == 1:
+                    heart_diagnosis = 'The person is having heart disease'
+                else:
+                    heart_diagnosis = 'The person does not have any heart disease'
+        
+        except ValueError:
+            st.error("Please ensure all inputs are valid numeric values.")
 
     st.success(heart_diagnosis)
