@@ -9,96 +9,93 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-# Set the page to wide mode
-st.set_page_config(layout="wide")
 
-# Loading the saved models
+# loading the saved models
+
 heart_disease_model = pickle.load(open('heart_disease_prediction_logisticRegression.sav', 'rb'))
 
-# Sidebar for navigation
+
+
+
+# sidebar for navigation
 with st.sidebar:
+    
     selected = option_menu('Heart Disease Prediction System',
-                           ['Heart Disease Prediction'],
-                           icons=['activity', 'heart', 'person'],
-                           default_index=0)
+                          
+                          [
+                           'Heart Disease Prediction',
+                           ],
+                          icons=['activity','heart','person'],
+                          default_index=0)
+    
+    
+
+
 
 # Heart Disease Prediction Page
-if selected == 'Heart Disease Prediction':
+if (selected == 'Heart Disease Prediction'):
     
-    # Page title
+    # page title
     st.title('Heart Disease Prediction using ML')
     
-    # Input fields arranged in columns
     col1, col2, col3 = st.columns(3)
     
     with col1:
         age = st.text_input('Age')
         
     with col2:
-        sex = st.selectbox('Sex (1 = Male, 0 = Female)', options=["", 1, 0])
+        sex = st.text_input('Sex')
         
     with col3:
-        cp = st.selectbox('Chest Pain Types (0-3)', options=["", 0, 1, 2, 3])
+        cp = st.text_input('Chest Pain types')
         
     with col1:
-        trestbps = st.text_input('Resting Blood Pressure (in mm Hg)')
+        trestbps = st.text_input('Resting Blood Pressure')
         
     with col2:
-        chol = st.text_input('Serum Cholesterol in mg/dl')
+        chol = st.text_input('Serum Cholestoral in mg/dl')
         
     with col3:
-        fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False)', options=["", 1, 0])
+        fbs = st.text_input('Fasting Blood Sugar > 120 mg/dl')
         
     with col1:
-        restecg = st.selectbox('Resting Electrocardiographic Results (0-2)', options=["", 0, 1, 2])
+        restecg = st.text_input('Resting Electrocardiographic results')
         
     with col2:
-        thalach = st.text_input('Maximum Heart Rate Achieved')
+        thalach = st.text_input('Maximum Heart Rate achieved')
         
     with col3:
-        exang = st.selectbox('Exercise Induced Angina (1 = Yes, 0 = No)', options=["", 1, 0])
+        exang = st.text_input('Exercise Induced Angina')
         
     with col1:
-        oldpeak = st.text_input('ST Depression Induced by Exercise')
+        oldpeak = st.text_input('ST depression induced by exercise')
         
     with col2:
-        slope = st.selectbox('Slope of the Peak Exercise ST Segment (0-2)', options=["", 0, 1, 2])
+        slope = st.text_input('Slope of the peak exercise ST segment')
         
     with col3:
-        ca = st.selectbox('Major Vessels Colored by Fluoroscopy (0-3)', options=["", 0, 1, 2, 3])
+        ca = st.text_input('Major vessels colored by flourosopy')
         
     with col1:
-        thal = st.selectbox('Thal (1 = Fixed Defect, 2 = Normal, 3 = Reversible Defect)', options=["", 1, 2, 3])
+        thal = st.text_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
         
-    # Code for Prediction
+        
+     
+     
+    # code for Prediction
     heart_diagnosis = ''
     
-    # Creating a button for Prediction
+    # creating a button for Prediction
+    
     if st.button('Heart Disease Test Result'):
-        try:
-            # Validate that all inputs are filled
-            if age and sex and cp and trestbps and chol and fbs and restecg and thalach and exang and oldpeak and slope and ca and thal:
-                # Convert inputs to the appropriate types
-                input_data = [[
-                    int(age), int(sex), int(cp), 
-                    int(trestbps), int(chol), int(fbs),
-                    int(restecg), int(thalach), 
-                    int(exang), float(oldpeak),
-                    int(slope), int(ca), int(thal)
-                ]]
-                
-                # Make prediction
-                heart_prediction = heart_disease_model.predict(input_data)
-                
-                # Display result
-                if heart_prediction[0] == 1:
-                    heart_diagnosis = 'The person is having heart disease'
-                else:
-                    heart_diagnosis = 'The person does not have heart disease'
-            else:
-                st.error("Please fill all fields correctly before submitting.")
-                
-        except ValueError:
-            st.error("Please enter valid numeric values.")
+        heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]])                          
+        
+        if (heart_prediction[0] == 1):
+          heart_diagnosis = 'The person is having heart disease'
+        else:
+          heart_diagnosis = 'The person does not have any heart disease'
         
     st.success(heart_diagnosis)
+        
+    
+    
